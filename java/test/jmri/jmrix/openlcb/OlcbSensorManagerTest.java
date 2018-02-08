@@ -13,6 +13,8 @@ import org.junit.Test;
  * @author	Bob Jacobsen Copyright 2008, 2010
  */
 public class OlcbSensorManagerTest extends jmri.managers.AbstractSensorMgrTestBase {
+        
+    OlcbSystemConnectionMemo m;
 
     @Override
     public String getSystemName(int i) {
@@ -72,13 +74,14 @@ public class OlcbSensorManagerTest extends jmri.managers.AbstractSensorMgrTestBa
     public void setUp() {
         JUnitUtil.setUp();
 
-        OlcbSystemConnectionMemo m = OlcbTestInterface.createForLegacyTests();
+        m = OlcbTestInterface.createForLegacyTests();
 
         l = new OlcbSensorManager(m);
     }
 
     @After
     public void tearDown() {
+        m.getInterface().terminateThreads();
         l.dispose();
         JUnitUtil.tearDown();
     }

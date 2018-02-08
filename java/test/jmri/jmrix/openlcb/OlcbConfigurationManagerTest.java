@@ -24,7 +24,8 @@ public class OlcbConfigurationManagerTest {
         OlcbSystemConnectionMemo memo = OlcbTestInterface.createForLegacyTests();
         OlcbConfigurationManager t = new OlcbConfigurationManager(memo);
         // this tet verifies this does not throw an exception
-        t.configureManagers(); 
+        t.configureManagers();
+        t.getInterface().terminateThreads(); 
     }
 
     // The minimal setup for log4J

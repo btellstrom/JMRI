@@ -12,7 +12,7 @@ import org.junit.Test;
  */
 public class NetworkTreePaneTest {
 
-    jmri.jmrix.can.CanSystemConnectionMemo memo;
+    jmri.jmrix.openlcb.OlcbSystemConnectionMemo memo;
     jmri.jmrix.can.TrafficController tc;
 
     @Test
@@ -32,6 +32,7 @@ public class NetworkTreePaneTest {
     @After
     public void tearDown() {
         jmri.util.JUnitUtil.resetWindows(false, false);
+        memo.getInterface().terminateThreads();
         JUnitUtil.tearDown();
     }
 }

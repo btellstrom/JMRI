@@ -13,7 +13,7 @@ import org.junit.Test;
  */
 public class HubActionTest {
 
-    jmri.jmrix.can.CanSystemConnectionMemo memo;
+    jmri.jmrix.openlcb.OlcbSystemConnectionMemo memo;
     jmri.jmrix.can.TrafficController tc;
 
     @Test
@@ -33,6 +33,7 @@ public class HubActionTest {
 
     @After
     public void tearDown() {
+        memo.getInterface().terminateThreads();
         JUnitUtil.tearDown();
     }
 }

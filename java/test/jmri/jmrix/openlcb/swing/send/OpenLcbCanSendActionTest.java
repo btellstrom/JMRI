@@ -14,7 +14,7 @@ import org.junit.Test;
  */
 public class OpenLcbCanSendActionTest {
 
-    jmri.jmrix.can.CanSystemConnectionMemo memo;
+    jmri.jmrix.openlcb.OlcbSystemConnectionMemo memo;
     jmri.jmrix.can.TrafficController tc;
 
     @Test
@@ -34,6 +34,7 @@ public class OpenLcbCanSendActionTest {
 
     @After
     public void tearDown() {
+        memo.getInterface().terminateThreads();
         JUnitUtil.tearDown();
     }
 }

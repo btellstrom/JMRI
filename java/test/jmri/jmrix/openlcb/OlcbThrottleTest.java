@@ -14,6 +14,9 @@ import org.junit.Test;
  */
 public class OlcbThrottleTest extends jmri.jmrix.AbstractThrottleTest {
 
+    private OlcbConfigurationManagerScaffold ocm;
+    private OlcbSystemConnectionMemo m;
+
     /**
      * Test of getIsForward method, of class AbstractThrottle.
      */
@@ -359,8 +362,8 @@ public class OlcbThrottleTest extends jmri.jmrix.AbstractThrottleTest {
     @Before
     public void setUp() {
         JUnitUtil.setUp();
-        OlcbSystemConnectionMemo m = OlcbTestInterface.createForLegacyTests();
-        OlcbConfigurationManager ocm = new OlcbConfigurationManagerScaffold(m);
+        m = OlcbTestInterface.createForLegacyTests();
+        ocm = new OlcbConfigurationManagerScaffold(m);
         m.configureManagers();
         ocm.configureManagers();
         instance = new OlcbThrottle(new DccLocoAddress(100,true),m,ocm);
@@ -369,6 +372,8 @@ public class OlcbThrottleTest extends jmri.jmrix.AbstractThrottleTest {
     @Override
     @After
     public void tearDown() {
+        ocm.terminateThreads();
+        m.getInterface().terminateThreads();
         JUnitUtil.tearDown();
     }
 }

@@ -102,5 +102,9 @@ public class OlcbConfigurationManagerScaffold extends jmri.jmrix.openlcb.OlcbCon
         messageBuilder = new MessageBuilder(aliasMap);
     }
 
+    public void terminateThreads(){
+        getInterface().terminateThreads();
+    }
+
     private final static Logger log = LoggerFactory.getLogger(OlcbConfigurationManagerScaffold.class);
 }

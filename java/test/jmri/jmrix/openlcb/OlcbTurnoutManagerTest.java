@@ -13,6 +13,8 @@ import org.junit.Test;
  * @author	Bob Jacobsen Copyright 2008, 2010, 2011
  */
 public class OlcbTurnoutManagerTest extends jmri.managers.AbstractTurnoutMgrTestBase {
+        
+    private OlcbSystemConnectionMemo m;
 
     @Override
     public String getSystemName(int i) {
@@ -50,7 +52,7 @@ public class OlcbTurnoutManagerTest extends jmri.managers.AbstractTurnoutMgrTest
     public void setUp() {
         JUnitUtil.setUp();
 
-        OlcbSystemConnectionMemo m = OlcbTestInterface.createForLegacyTests();
+        m = OlcbTestInterface.createForLegacyTests();
         l = new OlcbTurnoutManager(m);
 
     }
@@ -58,6 +60,7 @@ public class OlcbTurnoutManagerTest extends jmri.managers.AbstractTurnoutMgrTest
     @After
     public void tearDown() {
         l.dispose();
+        m.getInterface().terminateThreads();
         JUnitUtil.tearDown();
     }
 
